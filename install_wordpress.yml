@@ -94,7 +94,7 @@
     - name: Create nginx config
       template:
         src: templates/nginx/default.j2
-        dest: /etc/nginx/sites_available/default
+        dest: /etc/nginx/sites-available/default
 
   handlers:
     - name: restart nginx
