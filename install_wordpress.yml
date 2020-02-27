@@ -26,3 +26,21 @@
       package:
         name: apache2
         state: absent
+
+    - name: Install MySQL
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - mysql-server
+        - python-mysqldb
+
+#    - name: Remove anonymous users
+#      mysql_user:
+#        name: ""
+#        state: absent
+
+#    - name: Remove anonymous users
+#      mysql_user:
+#        name: ""
+#        state: absent
