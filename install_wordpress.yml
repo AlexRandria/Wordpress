@@ -90,11 +90,11 @@
     - set_fact:
         fpm_sock: /run/php/php7.{{ php_version.stdout.split(" ")[1].split(".")[1] }}-fpm.sock
       when: ansible_distribution == 'Ubuntu'
-      
+
     - name: Create nginx config
       template:
         src: templates/nginx/default.j2
-        dest: /etc/nginx/site_availables/default
+        dest: /etc/nginx/sites_available/default
 
   handlers:
     - name: restart nginx
