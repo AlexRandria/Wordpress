@@ -37,9 +37,8 @@
 
     - name: Generate new root password
       command: openssl rand -hex 7
-        args:
-          creates: /root/.my.cnf
-        register: mysql_new_root_pass
+      args:
+        creates: /root/.my.cnf
 
     - name: Remove anonymous users
       mysql_user:
@@ -50,3 +49,18 @@
       mysql_db:
         name: test
         state: absent
+
+    - name: Output new root password
+      debug:
+        msg: "New root password is {{mysql_new_root_pass.stdout}}"
+
+    - name: Update root password
+      mysql_user:
+        name: root
+        host: "{{ item }}"
+        password: "{{ mysql_new_root_pass.stdout }}"
+      loop:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
