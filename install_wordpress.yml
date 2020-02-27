@@ -87,4 +87,10 @@
     - name: Create nginx config
       template:
         src: templates/nginx/default.j2
-        dest: /etc/nginx/sites_available/default
+        dest: /etc/nginx/site_availables/default
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
