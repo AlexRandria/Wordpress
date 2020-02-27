@@ -44,7 +44,6 @@
     - name: Update root password
       mysql_user:
         name: root
-        password: "{{ mysql_new_root_pass.stdout }}"
         host: "{{ item }}"
         password: "{{ mysql_new_root_pass.stdout }}"
       loop:
@@ -52,6 +51,7 @@
         - 127.0.0.1
         - ::1
         - localhost
+      ignore_errors: true
 
     - name: Output new root password
       debug:
