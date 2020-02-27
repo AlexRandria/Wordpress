@@ -35,6 +35,10 @@
         - mysql-server
         - python-mysqldb
 
+    - name: Output new root password
+      debug:
+        msg: "New root password is {{mysql_new_root_pass.stdout}}"
+
     - name: Generate new root password
       command: openssl rand -hex 7
       args:
