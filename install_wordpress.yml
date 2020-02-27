@@ -74,6 +74,13 @@
         src: templates/mysql/my.cnf.j2
         dest: /root/.my.cnf
 
+    - name: Create mysqld.cnf
+      template:
+        src: templates/mysql/mysqld.cnf.j2
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+      when: mysql_new_root_pass.changed
+      notify: restart mysql
+
     - name: Install nginx
       package:
         name: nginx
