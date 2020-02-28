@@ -42,6 +42,7 @@
       loop:
         - python-mysqldb
         - mysql-server
+      notify: restart mysql
 
     - name: Generate new root password
       command: openssl rand -hex 7
