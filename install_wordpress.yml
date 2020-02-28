@@ -8,9 +8,10 @@
       ping:
 
 #Outils
-    - name: Install Unzip
-      package:
-        name: unzip
+    - name: Install required tools
+      apt:
+        name:
+          - unzip
         state: present
 
 #PHP
