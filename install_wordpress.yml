@@ -42,13 +42,13 @@
       loop:
         - python-mysqldb
         - mysql-server
-      notify: restart mysql
 
     - name: Generate new root password
       command: openssl rand -hex 7
       args:
         creates: /root/.my.cnf
       register: mysql_new_root_pass
+      notify: restart mysql
 
     - name: Remove anonymous users
       mysql_user:
