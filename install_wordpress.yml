@@ -13,7 +13,10 @@
         name:
           - unzip
         state: present
-
+    - name: Install GNU
+      apt:
+        name:
+          - gnupg
 #PHP
     - name: Add the ondrej PHP PPA
       apt_repository:
